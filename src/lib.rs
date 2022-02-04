@@ -400,12 +400,12 @@ impl<F: Read + Seek> CompoundFile<F> {
             let mut chain = directory
                 .open_chain(header.first_minifat_sector, SectorInit::Fat);
             if header.num_minifat_sectors as usize != chain.num_sectors() {
-                invalid_data!(
-                    "Incorrect MiniFAT chain length (header says {}, actual \
-                     is {})",
-                    header.num_minifat_sectors,
-                    chain.num_sectors()
-                );
+                // invalid_data!(
+                //     "Incorrect MiniFAT chain length (header says {}, actual \
+                //      is {})",
+                //     header.num_minifat_sectors,
+                //     chain.num_sectors()
+                // );
             }
             let num_minifat_entries = (chain.len() / 4) as usize;
             let mut minifat = Vec::<u32>::with_capacity(num_minifat_entries);
