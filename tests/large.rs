@@ -14,7 +14,7 @@ fn large_file() {
     let mut rng = rand::thread_rng();
     comp.create_stream("/index").unwrap();
 
-    for i in 0..100 {
+    for i in 0..1000 {
         let mut path = PathBuf::new();
         for _ in 0..10 {
             let r: u64 = rng.gen();
@@ -36,7 +36,7 @@ fn large_file() {
 
         let mut index = comp.open_stream("/index").unwrap();
         index.seek(SeekFrom::End(0)).unwrap();
-        index.write_all(&path.to_string_lossy().as_bytes()).unwrap();
+        index.write_all(&path.to_string_lossy().as_bytes()).unwrap(); 
     }
 
     let cursor = comp.into_inner();
